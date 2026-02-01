@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link href="index-styles.css" rel="stylesheet" />
+        <title>JavaScript Examples</title>
+    </head>
+    <body>
+        <header>
+            <h1>JavaScript Examples</h1>
+            <nav>
+                <ul id="navList">
+                    <li><a href="index.html">Home</a></li>
+                    <li>" "</li>
+                    <li><a href="jsExamples.html">JavaScript Examples</a></li>
+                    <li>" "</li>
+                </ul>
+            </nav>
+        </header>
+        <section class="js-examples">
+            <div id="example1">
+                <h2>Elapsed Time</h2>
+                <p id="secondsDisplay"></p>
+                <script>
+                    const startTime = Date.now();
+                    function getElapsedTime() {
+                        const currentTime = Date.now();
+                        const secondsElapsed = Math.floor((currentTime - startTime) / 1000);
+                        console.log('This page has been active for: ' + secondsElapsed + ' seconds');
+
+                        const displayElement = document.getElementById("secondsDisplay");
+                        if (displayElement) {
+                            displayElement.textContent = "This page has been active for: " + secondsElapsed + " seconds";
+                        }
+                        return secondsElapsed;
+                    }
+                    setInterval(getElapsedTime, 1000);
+                </script>
+            </div>
+            <div id="example2">
+                <h2>Alert Box</h2>
+                <button onclick="showAlert()">Click me for an alert</button>
+                <script>
+                    function showAlert() {
+                        alert("Hello! This is an alert box.");
+                    }
+                </script>
+            </div>
+
+            <div id="example3">
+                <h2>Change Text</h2>
+                <p id="text-example">This text will change when you click the button.</p>
+                <button onclick="changeText()">Change Text</button>
+                <button onclick="resetText()">Reset Text</button>
+                <script>
+                    function changeText() {
+                        document.getElementById("text-example").innerText = "The text has been changed!";
+                    }
+                    function resetText() {
+                        document.getElementById("text-example").innerText = "This text will change when you click the button.";
+                    }
+                </script>
+        </section>
+        <footer>
+            <p>© 2024 Jonathon Beck | Background template provided by <a href="https://www.svgbackgrounds.com/set/free-svg-backgrounds-and-patterns/">SVGBackgrounds.com</a></p>
+        </footer>
+    </body>
+</html>
