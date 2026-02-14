@@ -1,36 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
     <head>
         <meta charset="UTF-8" />
-        <link href="index-styles.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Home Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <style>
+            html {
+            background-color: #000000;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23180000' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%23310000' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23490000' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23610000' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23790000' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23920000' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23AA0000' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            }
+        </style>
     </head>
     <body>
-        <header>
-            <h1>Beck's Portfolio Page</h1>
-            <nav>
-                <ul id="navList">
-                    <li><a href="index.html">Home</a></li>
-                    <li>" "</li>
-                    <li><a href="jsExamples.html">JavaScript Examples</a></li>
-                    <li>" "</li>
-                </ul>
-            </nav>
+        <header class="bg-dark bg-opacity-75 py-3 mb-4 border-bottom">
+            <div class="container">
+                <h1 class ="text-white text-center">Beck's Portfolio Page</h1>
+                <nav>
+                    <ul class="nav justify-content-left">
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="index.html">Home</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" href="jsExamples.html">JavaScript Examples</a></li>
+                    </ul>
+                </nav>
+            </div>
         </header>
-        <section class="bio">
-            <h2>About Me</h2>
-            <img src="Images/SelfPortrait.jpg" alt="A self-portrait of me" />
-            <h3>Jonathon Beck</h3>
-            <p>This is my 6th quarter now (Winter 2026) and I am currently pursuing my 
-                <strong>Bachelor of Science in Information Technology</strong>.
-                I was a Signal Support Systems Specialist (25U) in the U.S. Army. If it sent a signal, received a signal, or plugged into something, 
-                I was generally the one they called for help.</p>
-        </section>
-        <section class="assignments">
-            <h2>Assignments</h2>
-        </section>
-        <footer>
-            <p>© 2026 Jonathon Beck | Background template provided by <a href="https://www.svgbackgrounds.com/set/free-svg-backgrounds-and-patterns/">SVGBackgrounds.com</a></p>
+
+        <main class="container">
+            <div class="row">
+                <section class="col-md-4 mb-5 p-4 bg-secondary bg-opacity-75 rounded text-white">
+                    <h2 class="text-center">About Me</h2>
+                    <div class="row align-items-center">
+                        <div class="text-center">
+                            <img src="Images/SelfPortrait.jpg" alt="A self-portrait of me"
+                                class="img-fluid img-thumbnail rounded-circle"
+                                style="max-width: 150px; object-fit: cover;" />
+                        </div>
+                        <div class="float-md-end mt-3 mt-md-0">
+                            <h3>Jonathon Beck</h3>
+                            <p>This is my 6th quarter now (Winter 2026) and I am currently pursuing my 
+                                <strong>Bachelor of Science in Information Technology</strong>.
+                                I was a Signal Support Systems Specialist (25U) in the U.S. Army. If it sent a signal, received a signal, or plugged into something, 
+                                I was generally the one they called for help.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section class="col-md-3">
+                </section>
+                <section class="col-md-5 mb-5 p-4 bg-secondary bg-opacity-75 rounded text-white">
+                    <h2>Assignments</h2>
+                </section>
+            </div>
+        </main>
+        <footer class="bg-dark bg-opacity-75 text-center text-light py-3 border-top fixed-bottom">
+            <div class="container">
+                <p class="mb-0">© 2026 Jonathon Beck | Background template provided by 
+                    <a href="https://www.svgbackgrounds.com/set/free-svg-backgrounds-and-patterns/" 
+                        class="text-light" target="_blank" rel="noopener noreferrer">SVGBackgrounds.com</a>
+                </p>
+            </div>
         </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
