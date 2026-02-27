@@ -1,51 +1,135 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Home Page</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <style>
-            html {
-            background-color: #000000;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23180000' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%23310000' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23490000' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23610000' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23790000' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23920000' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23AA0000' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
-            background-attachment: fixed;
-            background-size: cover;
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>My React App</title>
+
+    <style>
+        body {
+            margin: 0;
             font-family: Arial, sans-serif;
+            background-color: #222222;
+            color: #afafaf;
+        }
+
+        header {
+            background-color: #444;
+            padding: 5px;
+            text-align: center;
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .menu-button {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background-color: #333;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                padding: 10px;
+                border-radius: 5px;
+                z-index: 1000;
             }
 
-            .row {
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-button {
+                display: block;
+            }
+        }
+
+        .row {
             align-items: flex-start !important;
             padding-top: 30px;
-            }
+        }
 
-            .row a {
-                color: coral;
-            }
+        .row a {
+            color: coral;
+        }
 
-            .row a:hover {
-                color: deepskyblue;
-            }
-        </style>
-    </head>
-    <body>
-        <header class="bg-dark bg-opacity-75 py-3 mb-4 border-bottom">
-            <div class="container">
-                <h1 class ="text-white text-center">Beck's Portfolio Page</h1>
-                <nav>
-                    <ul class="nav justify-content-left">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="index.html">Home</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="jsExamples.html">JavaScript Examples</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="myReact.html">My React App</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+        .row a:hover {
+            color: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My React App</h1>
+    </header>
+    <div id="navbar-root"></div>
 
-        <main class="container">
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <script>
+        const { useState } = React;
+
+        function Navbar() {
+            const [menuOpen, setMenuOpen] = useState(false);
+
+            return React.createElement('nav', { className: 'navbar' },
+                React.createElement('div', null, 'My React App'),
+                React.createElement('button', {
+                    className: 'menu-button',
+                    onClick: () => setMenuOpen(!menuOpen)
+                }, '☰'),
+                React.createElement('div', {
+                    id: 'nav-links',
+                    className: `nav-links ${menuOpen ? 'active' : ''}`
+                },
+                    React.createElement('a', { href: 'index.html' }, 'Home'),
+                    React.createElement('a', { href: 'jsExamples.html' }, 'JavaScript Examples'),
+                    React.createElement('a', { href: 'myReact.html' }, 'My React App')
+                )
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('navbar-root'));
+        root.render(React.createElement(Navbar));
+    </script>
+
+    <main class="container">
             <div class="row">
                 <section class="col-md-4 mb-5 p-4 bg-secondary bg-opacity-75 rounded text-white">
                     <h2 class="text-center">About Me</h2>
@@ -128,5 +212,5 @@
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+</body>
 </html>
