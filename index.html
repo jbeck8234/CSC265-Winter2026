@@ -19,12 +19,54 @@
             padding-top: 30px;
             }
 
-            .row a {
+            .row a, li a {
                 color: coral;
             }
 
-            .row a:hover {
+            .row a:hover, li a:hover {
                 color: deepskyblue;
+            }
+
+            /*css for menu toggle*/
+            nav {
+                position: relative;
+            }
+
+            @media (max-width: 767.98px) {
+                #navLinks {
+                    display: none !important;
+                    flex-direction: column !important;
+                    gap: 10px;
+                    position:absolute;
+                    background-color: #222;
+                    border-radius: 5px;
+                    top: 100%;
+                    left: 0;
+                    width: 200px;
+                    z-index: 1050;
+                }
+                #navLinks.show {
+                    display: flex !important;
+                }
+                #menuToggle {
+                    display: block !important;
+                }
+                #navLinks .nav-link:hover {
+                    background-color: #333;
+                    text-decoration: underline;
+                }
+            }
+
+            @media (min-width: 768px) {
+                #navLinks {
+                    display: flex !important;
+                    position: static;
+                    flex-direction: row;
+                    width: auto;
+                }
+                    #menuToggle {
+                        display: none !important;
+                    }
             }
         </style>
     </head>
@@ -32,19 +74,47 @@
         <header class="bg-dark bg-opacity-75 py-3 mb-4 border-bottom">
             <div class="container">
                 <h1 class ="text-white text-center">Beck's Portfolio Page</h1>
-                <nav>
-                    <ul class="nav justify-content-left">
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="index.html">Home</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="jsExamples.html">JavaScript Examples</a></li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" href="myReact.html">My React App</a></li>
-                    </ul>
-                </nav>
             </div>
         </header>
+        <nav>
+                
+            <!-- Menu Toggle Button -->
+            <button id="menuToggle" class="btn btn-outline-light d-md-none" aria-label="Toggle navigation menu">
+                ☰ Menu
+            </button>
 
+            <!--jQuery for menu toggle-->
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+            <script>
+            $(document).ready(function() {
+                $("#menuToggle").on("click", function() {
+                    $("#navLinks").toggleClass("show");
+                    });
+                
+                // Hide menu when clicking outside of it
+                $(document).on("click", function(event) {
+                    if (!$(event.target).closest("#navLinks, #menuToggle").length) {
+                        $("#navLinks").removeClass("show");
+                    }
+                });
+                // Hide menu when window size is increased to 768px or more
+                $(window).on("resize", function() {
+                    if ($(window).width() >= 768) {
+                        $("#navLinks").removeClass("show");
+                    }
+                });
+            });
+            </script>    
+                
+            <ul id="navLinks" class="nav justify-content-left">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="index.html">Home</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="jsExamples.html">JavaScript Examples</a></li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="myReact.html">My React App</a></li>
+            </ul>
+        </nav>
         <main class="container">
             <div class="row">
                 <section class="col-md-4 mb-5 p-4 bg-secondary bg-opacity-75 rounded text-white">
@@ -69,54 +139,142 @@
                 </section>
                 <section class="col-md-5 mb-5 p-4 bg-secondary bg-opacity-75 rounded text-white">
                     <h2>Assignments</h2>
-                    <ul>Week 1
+                    <!-- Modifying the list of weeks so that they can be collapsed and expanded by clicking on the week title -->
+                    <div class="week-title">
+                    <button type="button" class="week-toggle w-100 text-start btn btn-link p-0" aria-expanded="true" aria-controls="week1-list" id="week1-toggle">
+                        <strong>Week 1</strong>
+                    </button>
+                    </div>
+                    <ul id="week1-list" class="mb-0 mt-2">
                         <li>Assignment 1.1: zyBooks Chapters 1&2 Participation Activities</li>
                         <li>Assignment 1.2: zyBooks Chapter 2 Labs</li>
                         <li>Assignment 1.3: Create Repository</li>
                     </ul>
-                    <ul>Week 2
+                    <div class="week-title">
+                    <button type="button" class="week-toggle w-100 text-start btn btn-link p-0" aria-expanded="true" aria-controls="week2-list" id="week2-toggle">
+                        <strong>Week 2</strong>
+                    </button>
+                    </div>
+                    <ul id="week2-list" class="mb-0 mt-2">
                         <li>Assignment 2.1: zyBooks Chapter 3-5 Participation Activities</li>
                         <li>Assignment 2.2: zyBooks Chapter 3-5 Labs</li>
                         <li>Assignment 2.3: <a href="index.html">index.html</a></li>
                     </ul>
-                    <ul>Week 3
+                    <div class="week-title">
+                    <button type="button" class="week-toggle w-100 text-start btn btn-link p-0" aria-expanded="true" aria-controls="week3-list" id="week3-toggle">
+                        <strong>Week 3</strong>
+                    </button>
+                    </div>
+                    <ul id="week3-list" class="mb-0 mt-2">
                         <li>Assignment 3.1: zyBooks Chapter 6 Participation Activities</li>
                         <li>Assignment 3.2: zyBooks Chapter 6 Labs</li>
                     </ul>
-                    <ul>Week 4
+                    <div class="week-title">
+                    <button type="button" class="week-toggle w-100 text-start btn btn-link p-0" aria-expanded="true" aria-controls="week4-list" id="week4-toggle">
+                        <strong>Week 4</strong>
+                    </button>
+                    </div>
+                    <ul id="week4-list" class="mb-0 mt-2">
                         <li>Assignment 4.1: zyBooks Chapter 7 Participation Activities</li>
                         <li>Assignment 4.2: zyBooks Chapter 7 Labs</li>
                         <li>Assignment 4.3: <a href="jsExamples.html">jsExamples.html</a></li>
                     </ul>
-                    <ul>Week 5
+                    <div class="week-title">
+                    <button type="button" class="week-toggle w-100 text-start btn btn-link p-0" aria-expanded="true" aria-controls="week5-list" id="week5-toggle">
+                        <strong>Week 5</strong>
+                    </button>
+                    </div>
+                    <ul id="week5-list" class="mb-0 mt-2">
                         <li>Assignment 5.1: zyBooks Chapter 8 Participation Activities</li>
                         <li>Assignment 5.2: zyBooks Chapter 8 Labs</li>
                         <li>Midterm Exam</li>
                     </ul>
-                    <ul>Week 6
+                    <div class="week-title">
+                    <button type="button" class="week-toggle w-100 text-start btn btn-link p-0" aria-expanded="true" aria-controls="week6-list" id="week6-toggle">
+                        <strong>Week 6</strong>
+                    </button>
+                    </div>
+                    <ul id="week6-list" class="mb-0 mt-2">
                         <li>Assignment 6.1: zyBooks Chapter 9 Participation Activities</li>
                         <li>Assignment 6.2: zyBooks Chapter 9 Labs</li>
                         <li>Assignment 6.3: <a href="index.html">index.html</a> (Rebuild withBootstrap)</li>
                     </ul>
-                    <ul>Week 7
+                    <div class="week-title">
+                    <button type="button" class="week-toggle w-100 text-start btn btn-link p-0" aria-expanded="true" aria-controls="week7-list" id="week7-toggle">
+                        <strong>Week 7</strong>
+                    </button>
+                    </div>
+                    <ul id="week7-list" class="mb-0 mt-2">
                         <li>Assignment 7.1: zyBooks Chapter 10 Participation Activities</li>
                     </ul>
-                    <ul>Week 8
+                    <div class="week-title">
+                    <button type="button" class="week-toggle w-100 text-start btn btn-link p-0" aria-expanded="true" aria-controls="week8-list" id="week8-toggle">
+                        <strong>Week 8</strong>
+                    </button>
+                    </div>
+                    <ul id="week8-list" class="mb-0 mt-2">
                         <li>Assignment 8.1: zyBooks Chapter 11 Participation Activities</li>
                         <li>Assignment 8.2: zyBooks Chapter 11 Labs</li>
                         <li>Assignment 8.3: <a href="myReact.html">myReact.html</a></li>
                     </ul>
-                    <ul>Week 9
+                    <div class="week-title">
+                    <button type="button" class="week-toggle w-100 text-start btn btn-link p-0" aria-expanded="true" aria-controls="week9-list" id="week9-toggle">
+                        <strong>Week 9</strong>
+                    </button>
+                    </div>
+                    <ul id="week9-list" class="mb-0 mt-2">
+                        <li>Assignment 9.1: zyBooks Chapter 12 Participation Activities</li>
+                        <li>Assignment 9.2: zyBooks Chapter 12 Labs</li>
+                        <li>Assignment 9.3: <a href="index.html">index.html</a> (Rebuild with jQuery)</li>
+                    </ul>
+                    <div class="week-title">
+                    <button type="button" class="week-toggle w-100 text-start btn btn-link p-0" aria-expanded="true" aria-controls="week10-list" id="week10-toggle">
+                        <strong>Week 10</strong>
+                    </button>
+                    </div>
+                    <ul id="week10-list" class="mb-0 mt-2">
                         <li>Assignment: Coming Soon</li>
                     </ul>
-                    <ul>Week 10
-                        <li>Assignment: Coming Soon</li>
-                    </ul>
-                    <ul>Week 11
+                    <div class="week-title">
+                    <button type="button" class="week-toggle w-100 text-start btn btn-link p-0" aria-expanded="true" aria-controls="week11-list" id="week11-toggle">
+                        <strong>Week 11</strong>
+                    </button>
+                    </div>
+                    <ul id="week11-list" class="mb-0 mt-2">
                         <li>Assignment: Coming Soon</li>
                     </ul>
                 </section>
             </div>
+            <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+                integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+                crossorigin="anonymous">
+            </script>
+            <!--Adding CSS to hide assignment lists by default-->
+            <style>
+                ul[id^="week"] {
+                display: none;
+                margin-left: 20px;
+                }
+            </style>
+            <script>
+                //jQuery code to toggle the visibility of the assignment lists when the week titles are clicked, and to update the aria-expanded attribute for accessibility.
+                $(document).ready(function() {
+
+                    $(".week-toggle").attr("aria-expanded", "false");
+
+                    $(".week-toggle").on("click", function() {
+                        const $btn = $(this);
+                        const listId = $btn.attr("aria-controls");
+                        const $list = $("#" + listId);
+
+                        $list.slideToggle(200, function() {
+
+                        const expanded = $list.is(":visible");
+                        $btn.attr("aria-expanded", expanded ? "true" : "false");
+                        });
+                    });
+                });
+            </script>
         </main>
         <footer class="bg-dark bg-opacity-75 text-center text-light py-3 border-top fixed-bottom">
             <div class="container">
@@ -125,8 +283,32 @@
                         class="text-light" target="_blank" rel="noopener noreferrer">SVGBackgrounds.com</a>
                 </p>
             </div>
+            <script>
+                
+            </script>
         </footer>
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Adding a "Back to Top" button that appears when the user scrolls down -->
+        <button id="backToTop" class="btn btn-sm btn-outline-light" style="display:none; position:fixed; bottom:60px; right:20px; z-index:1050;" aria-label="Back to top">
+          ↑ Top
+        </button>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <!-- jQuery for "Back to Top" button -->
+        <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 200) {
+                    $("#backToTop").fadeIn();
+                } else {
+                    $("#backToTop").fadeOut();
+                }
+            });
+
+            $("#backToTop").click(function() {
+                $("html, body").animate({ scrollTop: 0 }, 500);
+                return false;
+            });
+        });
+        </script>
     </body>
 </html>
