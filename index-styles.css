@@ -103,6 +103,10 @@ footer {
     border-top: 1px solid #444444;
 }
 
+main {
+    padding-bottom: 50px;
+}
+
 ul[id^="week"] {
     display: none;
     margin-left: 20px;
